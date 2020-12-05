@@ -4,7 +4,7 @@ docker pull hyscale/hyscale:${hyscale_version}
 temp_container_name="hyscale-$(date +%s)"
 docker create --name ${temp_container_name} hyscale/hyscale:${hyscale_version} 
 
-docker cp $temp_container_name:/usr/local/bin/hyscale.jar /usr/local/bin/hyscale.jar
+docker cp $temp_container_name:/usr/local/bin/hyscale.jar /tmp/hyscale.jar
 
 docker rm ${temp_container_name}
 
