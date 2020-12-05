@@ -1,0 +1,24 @@
+name: 'Install HyScale'
+description: 'Installs HyScale'
+inputs:
+  hyscale-version:
+    description: 'hyscale tool version'
+    required: true
+    default: '0.9.8.1.195'
+outputs:
+  random-number: 
+    description: "Random number"
+    value: ${{ steps.random-number-generator.outputs.random-id }}
+runs:
+  using: "composite"
+  steps: 
+    - uses: actions/setup-java@v1
+      with:
+        java-version: '11.0.1'
+        java-package: jdk 
+        architecture: x64
+    - id: random-number-generator
+      run: echo "::set-output name=random-id::$(echo $RANDOM)"
+      shell: bash
+    - run: HYSCALE_VERSION=${{ inputs.hyscale-version }} ${{ github.action_path }}/hyscale-install.sh
+      shell: bash
