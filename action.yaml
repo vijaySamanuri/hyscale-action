@@ -12,11 +12,6 @@ outputs:
 runs:
   using: "composite"
   steps: 
-    - uses: actions/setup-java@v1
-      with:
-        java-version: '11.0.1'
-        java-package: jdk 
-        architecture: x64
     - id: random-number-generator
       run: echo "::set-output name=random-id::$(echo $RANDOM)"
       shell: bash
